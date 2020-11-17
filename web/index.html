@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AJAX</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2 id="first">AJAX Search</h2>
+
+            <div class="select-box">
+                <div class="options-container active">
+                    <div class="option">
+                        <input type="text" id="search">
+                        <div id="target">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="selected">
+                    Enter the actor's name
+                </div>
+            </div>   
+        </div>
+        
+        <script type="text/javascript">
+
+            //Taking data from the input
+            var searchBox = document.getElementById("search");
+
+            //Immediately invoked function expression
+            searchBox.onkeyup = function (evt) {
+                var text = this.value;
+                demand(text);
+            };
+
+            //Implementation of AJAX
+            function demand(text) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("get", "show?q=" + text, false);
+                xhr.send(null);
+
+                var reply = xhr.responseText;
+                document.getElementById("target").innerHTML = reply;
+            }
+
+        </script>
+        
+    </body>
+</html>
